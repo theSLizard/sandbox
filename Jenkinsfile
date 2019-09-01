@@ -2,17 +2,8 @@ pipeline {
   agent any
   stages {
     stage('Checkout') {
-      parallel {
-        stage('Checkout') {
-          steps {
-            git(url: 'git@github.com:theSLizard/sand_ios.git', branch: 'develop', changelog: true, poll: true, credentialsId: '02ad0362-dc93-4cb6-aea5-7d74734ff4f3')
-          }
-        }
-        stage('Install dependencies') {
-          steps {
-            sh '/usr/local/bin/pod install'
-          }
-        }
+      steps {
+        git(url: 'git@github.com:theSLizard/sand_ios.git', branch: 'develop', changelog: true, poll: true, credentialsId: '02ad0362-dc93-4cb6-aea5-7d74734ff4f3')
       }
     }
     stage('Build') {
@@ -26,7 +17,7 @@ fullAppName=$appName
 
 configuration=${1:-Test}
 if [ $configuration != \'Release\' ]; then
-    fullAppName=$appName-$configuration
+Â  Â  fullAppName=$appName-$configuration
 fi
 
 
